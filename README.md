@@ -1,4 +1,4 @@
-# Tractor virtual lab — v1.2 (2012 photo update)
+# Tractor virtual lab — v1.5 (speed and travel simulation)
 
 ## Open locally
 Extract the entire ZIP. Open Tractor_5105M_Virtual_Lab.html in a browser.
@@ -54,3 +54,47 @@ JavaScript syntax and asset references checked. Original assessment flow,
 photo controls, transmission selection, hydraulics and reports were browser
 tested. New PTO question and 2012 image references added in this revision.
 This is a photographic teaching simulation, not a 3D/physics driving model.
+
+## v1.3 clarification
+Questions 6 and 11 now include their reference illustrations. Transmission
+wording is clearer and identifies the simulation explicitly. All question
+illustrations can be opened at full size. Replace the HTML file; existing
+assets do not change. Existing browser reports remain in the earlier version
+namespace; the revised activity starts a new attempt.
+
+## v1.4
+Question 14 uses the requested wording and includes manual reference 55-6.
+Only the HTML needs replacing; image assets are unchanged.
+
+## v1.5 — speed and travel
+The transmission bench now estimates speed from engine RPM, gear, range,
+direction, rear tire size and assumed wheel slip. It uses the supplied
+OMSJ10032 manual section 55-7 table at 2,200 RPM with 16.9-30 R1 tires;
+section 55-11 supplies tire correction factors. Reverse has its own table
+values. Speed = table speed × RPM/2200 × tire factor × (1-slip/100).
+
+Start the travel clock, apply RPM changes, and watch signed position versus
+time. Depress the simulated clutch before changing gear/range. Stop the
+simulated drivetrain before changing direction. Release the clutch to resume.
+Forward raises position; reverse lowers it; total distance counts both.
+Pause freezes the simulation clock, and does not disengage the drivetrain.
+Download the travel CSV to examine settings, speed, position and distance.
+The 60-second example demonstrates forward travel, increased RPM, a stop,
+reverse travel, and a final stop.
+
+This is an approximate constant-speed teaching model: acceleration, braking,
+inertia and terrain are not simulated. Clutch depression stops motion instantly.
+Actual tire rolling radius, pressure, loading and slip affect field speed.
+The linear RPM scaling and user-entered slip are estimates.
+
+Upload the revised HTML AND assets folder (including new manual-94.png and
+manual-98.png). Keep all existing images. Questions 6, 11 and 14 retain their
+reference illustrations. The v1.5 activity starts a fresh browser attempt.
+JavaScript syntax, speed calculations, forward/reverse integration and the
+example graph were checked. This model does not replace operator training.
+
+## Hydraulic flow animation correction
+The orange pressure line animates from the valve into the cylinder; the blue
+return line animates from the cylinder back toward the valve. Extension and
+retraction swap the pressure and return sides, including animation direction.
+Only the HTML changed; the existing assets remain unchanged.

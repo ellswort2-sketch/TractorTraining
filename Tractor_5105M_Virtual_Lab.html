@@ -177,4 +177,32 @@ $('sumPrint').onclick=()=>{if(!summative?.submitted)return;document.body.classLi
 $('sumNew').onclick=()=>{if(!summative?.submitted)return;if(!confirm('Download the completed assessment first. Start a separate record for another student or an instructor-authorized new attempt? This does not change the completed responses.'))return;summative=null;walkRecord={};walkSelected=-1;saveWalk();renderWalk();$('walkPrompt').textContent='Choose a checkpoint to begin.';$('walkFunction').disabled=true;$('walkCheck').disabled=true;$('walkFeedback').textContent='';saveSummative();$('sumStudent').value='';renderSummative();tab('explore');$('walkCard').scrollIntoView({behavior:'auto',block:'start'});};
 try{const saved=JSON.parse(localStorage.getItem(SUM_KEY)||'null');if(saved&&saved.version==='1.6'&&Array.isArray(saved.answers)&&saved.index>=0&&saved.index<=Q.length)summative=saved;}catch(e){}renderSummative();
 
+</script><style>
+#classAccessLock[hidden]{display:none!important}#classAccessLock{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;overflow:auto;padding:25px;background:#0c1a14;color:#eef3e9;font:17px/1.6 system-ui,sans-serif}#classAccessLock>div{width:min(100%,760px);padding:30px;border:1px solid #5a735a;border-radius:14px;background:#1b3026}#classAccessLock h1{font-size:32px}#classAccessDownloads{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}#classAccessLock button{background:#f4d45d;color:#14271c;border:1px solid #f4d45d;padding:12px;border-radius:7px;cursor:pointer;font:inherit}@media print{#classAccessLock{display:none!important}}
+</style><script>
+// Classroom access schedule. Browser-side convenience lock, not authenticated access control.
+const ClassAccess=(()=>{
+ const zone='America/Los_Angeles',start=12*60+45,end=14*60+20;
+ const fmt=new Intl.DateTimeFormat('en-US',{timeZone:zone,weekday:'short',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
+ function parts(date){return Object.fromEntries(fmt.formatToParts(date).map(p=>[p.type,p.value]));}
+ function allowed(date=new Date()){const p=parts(date),m=+p.hour*60+(+p.minute);return ['Mon','Thu'].includes(p.weekday)&&m>=start&&m<end;}
+ function display(date=new Date()){return new Intl.DateTimeFormat('en-US',{timeZone:zone,weekday:'long',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',second:'2-digit',timeZoneName:'short'}).format(date);}
+ return {allowed,display,zone};
+})();
+let classAccessOpen=null;
+const classLock=document.createElement('section');classLock.id='classAccessLock';classLock.setAttribute('role','dialog');classLock.setAttribute('aria-modal','true');classLock.setAttribute('aria-labelledby','classAccessTitle');classLock.hidden=true;
+classLock.innerHTML='<div><span style="color:#f4d45d">TRACTOR LAB · CLASSROOM HOURS</span><h1 id="classAccessTitle">The activity is closed</h1><p>Available <strong>Mondays and Thursdays, 12:45–2:20 p.m. Pacific Time</strong>.</p><p id="classAccessClock"></p><p id="classAccessReason">Return during the next scheduled class period. This page opens automatically when class hours begin.</p><div id="classAccessDownloads"></div><p style="font-size:14px;color:#bdccbe">Completed reports can still be downloaded below. In-progress summative responses remain saved on this browser when storage is available. The schedule uses Pacific Time and adjusts automatically for daylight saving time.</p></div>';
+document.body.appendChild(classLock);
+function refreshClassDownloads(){const box=document.getElementById('classAccessDownloads');box.replaceChildren();function add(label,fn){const b=document.createElement('button');b.textContent=label;b.onclick=fn;box.appendChild(b);}
+ if(summative?.submitted){add('Download completed summative report',()=>$('sumHTML').onclick());add('Download summative JSON',()=>$('sumJSON').onclick());}if(report){add('Download completed practice report',()=>$('saveHTML').onclick());}
+}
+function applyClassSchedule(){const now=new Date(),open=ClassAccess.allowed(now);document.getElementById('classAccessClock').textContent='Current class time: '+ClassAccess.display(now);if(open===classAccessOpen)return;classAccessOpen=open;if(!open){
+ stopHyd();pauseMotion();if(summative&&!summative.submitted&&summative.index>=Q.length)sumDraft();persist();
+ document.querySelectorAll('iframe').forEach(f=>f.removeAttribute('src'));
+ }classLock.hidden=open;for(const child of document.body.children)if(child!==classLock&&!['SCRIPT','STYLE'].includes(child.tagName))child.inert=!open;
+ if(!open){refreshClassDownloads();document.getElementById('classAccessTitle').setAttribute('tabindex','-1');document.getElementById('classAccessTitle').focus();}}
+// Recheck before an input action as well as on the clock, so an already open page locks.
+for(const type of ['click','pointerdown','keydown','input','change'])document.addEventListener(type,e=>{applyClassSchedule();if(!classAccessOpen&&!classLock.contains(e.target)){e.preventDefault();e.stopImmediatePropagation();}},true);
+window.addEventListener('focus',applyClassSchedule);document.addEventListener('visibilitychange',applyClassSchedule);setInterval(applyClassSchedule,1000);applyClassSchedule();
+
 </script></body></html>

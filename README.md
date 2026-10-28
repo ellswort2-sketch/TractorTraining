@@ -98,3 +98,36 @@ The orange pressure line animates from the valve into the cylinder; the blue
 return line animates from the cylinder back toward the valve. Extension and
 retraction swap the pressure and return sides, including animation direction.
 Only the HTML changed; the existing assets remain unchanged.
+
+## Mowing challenge — MOW-1.0
+Upload Tractor_Mowing_Challenge.html beside Tractor_5105M_Virtual_Lab.html.
+Replace the lab HTML to add the Mowing challenge navigation link. The new game
+is self-contained and requires no additional images or services.
+
+Practice is untimed and pausable. Challenges last five real minutes, cannot
+be paused, and have fixed field, mower and scoring conditions. A completed
+challenge is labeled eligible for class comparison; early finishes are not.
+Students download an HTML report (or print to PDF) for Canvas; JSON includes
+the sampled travel log. Reports include route/coverage map, category scores,
+errors and student reflection. Browser-local best score is not a class leaderboard.
+Reports are editable formative records, with no authentication or automatic
+Canvas grade transfer. Instructor review is required.
+
+Scoring: coverage 40 (full at 70% cut), pass accuracy 25, target operation 20,
+control procedures 15. The latter three scale up until 25% coverage, preventing
+a tiny cut area from earning most points. Target: 5–9 km/h, 1900–2200 RPM.
+These are classroom game targets, not manufacturer instructions. Simplified
+6 m rear mower, 91.44 × 48.77 m football playing area, 0.5 m scoring grid.
+No end zones, soil physics, PTO ratio modeling, slopes, or collisions.
+
+Keyboard: focus field, hold W/up to drive, A/D or left/right to steer, S/down
+to brake; release drive to stop. Touch users hold the labeled buttons. Begin
+with B3, engage PTO at 1000 RPM while stopped, then raise RPM to 2200. Clutch
+before gear/range changes. Stop and disengage PTO before selecting reverse.
+Raise mower for turns; turn in the 6 m headland. Recommended first class use:
+practice together, then one five-minute attempt, download report and explain
+strategy. Rank only completed challenges from the same build and conditions.
+
+Verification: browser checks of driving, PTO, field rendering and report;
+deterministic checks of cut area, distance, no-cut with raised mower/reverse,
+shift interlocks, time expiry, early finish eligibility and score behavior.

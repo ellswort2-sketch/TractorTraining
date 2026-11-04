@@ -1,20 +1,5 @@
 # Tractor virtual lab — v1.5 (speed and travel simulation)
 
-## Open locally
-Extract the entire ZIP. Open Tractor_5105M_Virtual_Lab.html in a browser.
-Keep the assets folder alongside the HTML. The webpage now uses separate
-image files to stay below GitHub's browser upload limit for an individual file.
-Internet is only needed for the optional YouTube video.
-
-## GitHub Pages
-Upload BOTH Tractor_5105M_Virtual_Lab.html AND the entire assets folder
-into the same Pages source folder. Preserve the assets directory name.
-Replace the previous HTML with this updated version. Do not rename assets.
-Commit, wait for deployment, and refresh the page (Ctrl+Shift+R if necessary).
-Existing homepage link:
-<a href="Tractor_5105M_Virtual_Lab.html">Tractor Virtual Lab</a>
-Do not overwrite an existing index.html homepage.
-
 ## Activity
 Explore the supplied photographs and manual reference views. Try the
 representative PowrReverser gear/range simulation and hydraulic-cylinder

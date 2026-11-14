@@ -12,7 +12,7 @@ available. An unfinished quiz does not resume after reloading. On a shared
 computer, download your report and start a new attempt for the next user.
 
 ## Configuration and accuracy
-Four newly supplied views are identified by the instructor as a 2012 5105M.
+Four views are identified by the instructor as a 2012 5105M.
 They show 1-4 speed gears with Neutral/Park, F/N/R lever, electronic hitch
 controls, and separate PTO engagement and speed-selection controls.
 The yellow control engages/disengages the PTO. The separate black lever
@@ -40,19 +40,12 @@ photo controls, transmission selection, hydraulics and reports were browser
 tested. New PTO question and 2012 image references added in this revision.
 This is a photographic teaching simulation, not a 3D/physics driving model.
 
-## v1.3 clarification
-Questions 6 and 11 now include their reference illustrations. Transmission
-wording is clearer and identifies the simulation explicitly. All question
-illustrations can be opened at full size. Replace the HTML file; existing
-assets do not change. Existing browser reports remain in the earlier version
-namespace; the revised activity starts a new attempt.
-
 ## v1.4
 Question 14 uses the requested wording and includes manual reference 55-6.
 Only the HTML needs replacing; image assets are unchanged.
 
 ## v1.5 — speed and travel
-The transmission bench now estimates speed from engine RPM, gear, range,
+The transmission bench estimates speed from engine RPM, gear, range,
 direction, rear tire size and assumed wheel slip. It uses the supplied
 OMSJ10032 manual section 55-7 table at 2,200 RPM with 16.9-30 R1 tires;
 section 55-11 supplies tire correction factors. Reverse has its own table
@@ -72,22 +65,13 @@ inertia and terrain are not simulated. Clutch depression stops motion instantly.
 Actual tire rolling radius, pressure, loading and slip affect field speed.
 The linear RPM scaling and user-entered slip are estimates.
 
-Upload the revised HTML AND assets folder (including new manual-94.png and
-manual-98.png). Keep all existing images. Questions 6, 11 and 14 retain their
-reference illustrations. The v1.5 activity starts a fresh browser attempt.
-JavaScript syntax, speed calculations, forward/reverse integration and the
-example graph were checked. This model does not replace operator training.
-
-## Hydraulic flow animation correction
+## Hydraulic flow animation
 The orange pressure line animates from the valve into the cylinder; the blue
 return line animates from the cylinder back toward the valve. Extension and
 retraction swap the pressure and return sides, including animation direction.
 Only the HTML changed; the existing assets remain unchanged.
 
 ## Mowing challenge — MOW-1.0
-Upload Tractor_Mowing_Challenge.html beside Tractor_5105M_Virtual_Lab.html.
-Replace the lab HTML to add the Mowing challenge navigation link. The new game
-is self-contained and requires no additional images or services.
 
 Practice is untimed and pausable. Challenges last five real minutes, cannot
 be paused, and have fixed field, mower and scoring conditions. A completed
